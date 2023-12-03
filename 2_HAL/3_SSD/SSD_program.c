@@ -15,35 +15,48 @@
 
 void SSD_voidInit        ( SSD_Type SSD_Configuration )
 {
-	DIO_enumSetPinDirection(SSD_Configuration.Port,SSD_Configuration.Pin,DIO_PIN_OUTPUT);
+	DIO_enumSetPortDirection    ( Copy_structConfig.DataPort , 0xFF );
 
 }
-
+/*
+ * Breif : This Function enable common pin
+ * Parameters : => struct has the SSD type , data port and enable(port & pin)
+ * return : void
+ */
 void SSD_voidOn          ( SSD_Type SSD_Configuration )
 {
 	if(SSD_Configuration.Active_State == ACTIVE_HIGH )
 	{
-		DIO_enumSetPinValue(SSD_Configuration.Port,SSD_Configuration.Pin,DIO_PIN_HIGH);
+		DIO_enumSetPinDirection( SSD_Configuration.EnablePort , SSD_Configuration.EnablePin , DIO_PIN_HIGH );
+		DIO_enumSetPinValue( SSD_Configuration.EnablePort , SSD_Configuration.EnablePin , DIO_PIN_HIGH );
 
 	}
 	else if(SSD_Configuration.Active_State == ACTIVE_LOW)
 	{
-		DIO_enumSetPinValue(SSD_Configuration.Port,SSD_Configuration.Pin,DIO_PIN_LOW);
+		DIO_enumSetPinDirection( SSD_Configuration.EnablePort , SSD_Configuration.EnablePin , DIO_PIN_HIGH );
+		DIO_enumSetPinValue( SSD_Configuration.EnablePort , SSD_Configuration.EnablePin , DIO_PIN_LOW );
 
 	}
 
 }
 
+/*
+ * Breif : This Function disable common pin
+ * Parameters : => struct has the SSD type , data port and enable(port & pin)
+ * return : void
+ */
 void SSD_voidOff         ( SSD_Type SSD_Configuration )
 {
 	if(SSD_Configuration.Active_State == ACTIVE_HIGH )
 		{
-			DIO_enumSetPinValue(SSD_Configuration.Port,SSD_Configuration.Pin,DIO_PIN_LOW);
+			DIO_enumSetPinDirection( SSD_Configuration.EnablePort , SSD_Configuration.EnablePin , DIO_PIN_HIGH );
+			DIO_enumSetPinValue( SSD_Configuration.EnablePort , SSD_Configuration.EnablePin , DIO_PIN_LOW );
 
 		}
 		else if(SSD_Configuration.Active_State == ACTIVE_LOW)
 		{
-			DIO_enumSetPinValue(SSD_Configuration.Port,SSD_Configuration.Pin,DIO_PIN_HIGH);
+			DIO_enumSetPinDirection( SSD_Configuration.EnablePort , SSD_Configuration.EnablePin , DIO_PIN_HIGH );
+			DIO_enumSetPinValue( SSD_Configuration.EnablePort , SSD_Configuration.EnablePin , DIO_PIN_HIGH );
 
 		}
 
