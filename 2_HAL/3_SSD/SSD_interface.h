@@ -37,9 +37,10 @@
 
 typedef struct{
 
-	u8 Port;
-	u8 Pin;
 	u8 Active_State ;
+	u8 DataPort;
+	u8 EnablePort;
+	u8 EnablePin;
 }SSD_Type;
 
 
