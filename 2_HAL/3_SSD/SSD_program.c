@@ -62,9 +62,13 @@ void SSD_voidOff         ( SSD_Type SSD_Configuration )
 
 
 }
-
+/*
+ * Breif : This Function reverse SSD State
+ * Parameters : => struct has the SSD type , data port and enable(port & pin)
+ * return : void
+ */
 void SSD_voidToggle      ( SSD_Type SSD_Configuration )
 {
 
-	DIO_enumTogglePinValue(SSD_Configuration.Port,SSD_Configuration.Pin);
+	DIO_enumTogglePinValue(SSD_Configuration.EnablePort,SSD_Configuration.EnablePin);
 }
